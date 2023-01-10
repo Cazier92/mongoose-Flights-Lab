@@ -9,7 +9,7 @@ const flightSchema = new Schema({
   },
   airport: {
     type: String,
-    enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN', 'SLC'],
+    enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN', 'SLC', 'JFK'],
     default: 'DEN'
   },
   flightNo: {
@@ -23,6 +23,8 @@ const flightSchema = new Schema({
       return new Date().getFullYear() + 1
     }
   }
+}, {
+  timestamps: true
 })
 
 const Flight = mongoose.model('Flight', flightSchema)
