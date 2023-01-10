@@ -75,7 +75,7 @@ function update(req, res) {
     if (req.body[key] === '') delete req.body[key]
   }
   Flight.findByIdAndUpdate(req.params.id, req.body, {new: true})
-  .then(movie => {
+  .then(flight => {
     res.redirect(`/flights/${flight._id}`)
   })
   .catch(err => {
