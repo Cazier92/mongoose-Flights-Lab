@@ -15,7 +15,7 @@ router.post('/:id/meals', flightsCtrl.addMealToFlight)
 
 router.delete('/:id', flightsCtrl.delete)
 
-router.delete('/:id/tickets/:ticketId', flightsCtrl.deleteTicket)
+router.delete('/:flightId/tickets/:ticketId', flightsCtrl.deleteTicket)
 
 router.put('/:id', flightsCtrl.update)
 

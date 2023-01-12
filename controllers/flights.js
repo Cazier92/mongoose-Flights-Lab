@@ -113,40 +113,22 @@ function createTicket(req, res) {
 
 function deleteTicket(req, res) {
   console.log(req.params)
-  // const currentFlight = Flight.findById(req.params.id)
-  // // const currentTicket = Ticket.findById(req.params.ticketId)
-  // const ticketDoc = currentFlight.tickets.id(req.params.ticketId)
-  // console
-  // console.log(currentTicket)
-  // let currentFlight = Flight.findById(req.params.id)
-  // console.log(Flight.tickets.id('63be0109f2fcc3fba13c5fca'))
-  // console.log(req)
-  // let id = req.params.id
-  // console.log(id.parent())
-  // let ticket = Flight.tickets
-  // ticket.findByIdAndDelete(req.params.id)
-  // const ticketDoc = Flight.tickets.id(req.params.id)
-  // Flight.tickets.remove(req.params.id)
-  // console.log(ticketDoc)
-  // .then(ticket => {
-  //   res.redirect('/flights/show')
-  // })
-  // Flight.findById(req.params.id)
-  // .then(flight => {
-  //   flight.tickets.id(`${ticket._id}`).remove()
-  //   flight.save()
-  //   .then(() => {
-  //     res.redirect(`/flights/${flight._id}`)
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //     res.redirect(`/flights/${flight._id}`)
-  //   })
-  // })
-  // .catch(err => {
-  //   console.log(err)
-  //   res.redirect('/')
-  // })
+  Flight.findById(req.params.flightId)
+  .then(flight => {
+    flight.tickets.remove({_id: req.params.ticketId})
+    flight.save()
+    .then(() => {
+      res.redirect(`/flights/${flight._id}`)
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
+  })
 }
 
 function addMealToFlight(req, res) {
